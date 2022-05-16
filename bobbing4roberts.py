@@ -6,7 +6,11 @@
 #    - removes duplicates, sorts; provides details about I/O lists
 
 #  TO DO:
+#    >  solve multiple dictionary input file names with different out:
+#       i.e.  Pat,Patricia and Pat,Patrick
+#       need to add both to dictionary, but likely must use nested dict
 #    >  solve outputfile exists, create new or overwrite?
+#    >  count # provided names, # after matches, # after username format
 #    >  test + allow read/write from alternate dir of script
 
 import os, sys, getopt
@@ -35,7 +39,8 @@ if len(sys.argv) < 4:
 if __name__ == "__main__":
  main(sys.argv[1:])
 
-namePair = "./namePairs.txt"
+script = os.path.dirname(os.path.abspath(__file__))
+namePair = script + "/namePairs.txt"
 namePairs = {}
 newNames = []
 unameList = []
@@ -93,6 +98,7 @@ with open(f'{inputfile}', 'r') as myfile:
 
 # Save output to specified filename
 #  to-do: if out file already exists, write new one
+#  :sort list and report stats
 print(f"\nThere were {inpCount} names in the input file,")
 print(f" and {addedName} names were added to the list.")
 print(f"Generating {unameCount} usernames...")
