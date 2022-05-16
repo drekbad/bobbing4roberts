@@ -5,12 +5,8 @@
 #    e.g.  inputfile:  Dave Thomas  ::  +ouputfile:  David Thomas
 #    - removes duplicates, sorts; provides details about I/O lists
 
-#  TO DO:  
-#    >  solve multiple dictionary input file names with different out:
-#       i.e.  Pat,Patricia and Pat,Patrick
-#       need to add both to dictionary, but likely must use nested dict
+#  TO DO:
 #    >  solve outputfile exists, create new or overwrite?
-#    >  count # provided names, # after matches, # after username format
 #    >  test + allow read/write from alternate dir of script
 
 import os, sys, getopt
@@ -42,6 +38,18 @@ if __name__ == "__main__":
 namePair = "./namePairs.txt"
 namePairs = {}
 newNames = []
+unameList = []
+unameCount = 0
+
+def unameFormat():
+  global unameCount
+  fLast = first[0]+last
+  firstL = first+last[0]
+  unameList.append(first)
+  unameList.append(fLast)
+  unameList.append(firstL)
+  unameList.append(first+"."+last)
+  unameCount += 4
 
 #  Open namePairs.txt file and create dict
 with open(f'{namePair}', 'r') as pairs:
@@ -50,7 +58,8 @@ with open(f'{namePair}', 'r') as pairs:
     namePairs[k.strip()] = v.strip()
 
 #  Open inputfile
-with open("./names.txt") as myfile:
+with open(f'{inputfile}', 'r') as myfile:
+  inpCount = len(open(inputfile).readlines(  ))
   addedName = 0
   for line in myfile:
     if not line:
@@ -59,19 +68,37 @@ with open("./names.txt") as myfile:
     first = names[0]
     if len(names) == 2:
       last = names[1]
-      newNames.append(first+" "+last)
     elif len(names) == 3:
       middle = names[1]
       last = names[2]
-      newNames.append(first+" "+last)
+#^^^ create condition for names longer than 3 words ^^^#
+#   Prevent adding if already in newNames
+    newFullname = first+" "+last
+    unameFormat()
+    if newFullname not in newNames:
+      newNames.append(newFullname)
     if first in namePairs.keys():
-      newNames.append(namePairs.get(first)+" "+last)
-      addedName += 1
+      keysNewFullname = namePairs.get(first)+" "+last
+#      newNames.append(namePairs.get(first)+" "+last)
+      if keysNewFullname not in newNames:
+        newNames.append(keysNewFullname)
+        addedName += 1 # counting for stats of newly-added names
+#   Reverse lookup: for-each loop to prevent StopIteration via generator exprs
+    exp = (key for key, value in namePairs.items() if value == first)
+    for key in exp:
+      valuesNewFullname = key+" "+last
+      if valuesNewFullname not in newNames:
+        newNames.append(valuesNewFullname)
+        addedName += 1
 
 # Save output to specified filename
-## if out file already exists, write new one
+#  to-do: if out file already exists, write new one
+print(f"\nThere were {inpCount} names in the input file,")
+print(f" and {addedName} names were added to the list.")
+print(f"Generating {unameCount} usernames...")
 print(f"\nsaving to file:  ./{outputfile}")
 outFile = open(outputfile, 'w')
-for element in newNames:
+for element in unameList:
+#for element in newNames:
   outFile.write(element + "\n")
 outFile.close()
