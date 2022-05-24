@@ -36,6 +36,7 @@ Josh,Joshua
 Kaitlin,Kait
 Kate,Katie
 Katherine,Kate
+Ken,Kenneth
 Kev,Kevin
 Kim,Kimberly
 Liz,Elizabeth
@@ -60,6 +61,7 @@ Rob,Bob
 Rob,Robert
 Samantha,Sam
 Samuel,Sam
+Serg,Sergey
 Steph,Stephanie
 Steven,Steve
 Sue,Susan
@@ -67,6 +69,8 @@ Teddy,Ted
 Ted,Theodore
 Tiff,Tiffany
 Tim,Timothy
+Tina,Christina
+Tina,Martina
 Tom,Tommy
 Ty,Tyler
 Will,Bill
