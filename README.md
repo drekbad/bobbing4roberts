@@ -18,11 +18,11 @@ python bobbing4roberts.py -i <inputfile> -o <outputfile> [-a <additionalfile> | 
 
 ### Options at your disposal:
 
--i, --ifile: Specify the maiden voyage list (input file).
--o, --ofile: Designate the treasure map (output file) for your harvested usernames.
--a, --add: Enlist an allied ship (additional name pairs file) alongside the default crew.
--s, --swap: Commandeer a new vessel (swap the default name pairs file) for the journey.
--f, --format: Choose your weaponry (username formats), e.g., -f 1,2 for fast and silent takedowns.
+`-i, --ifile: Specify the maiden voyage list (input file).
+`-o, --ofile: Designate the treasure map (output file) for your harvested usernames.
+`-a, --add: Enlist an allied ship (additional name pairs file) alongside the default crew.
+`-s, --swap: Commandeer a new vessel (swap the default name pairs file) for the journey.
+`-f, --format: Choose your weaponry (username formats), e.g., -f 1,2 for fast and silent takedowns.
 
 ### 🏴‍☠️ Username Formats
 jsmith - A swift jab (First initial + Last name)
