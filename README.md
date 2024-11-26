@@ -31,6 +31,7 @@ johns - The sneaky cutlass (First name + Last initial)\
 john - Lone wolf approach (First name only)\
 smith - The blunt force (Last name only)\
 smithj - The reverse grip (Last name + First initial)\
+j.smith - The dotted route (First initial + dot + Last name)
 
 ### ⚓ Considerations
 Tread carefully with names like "Pat," which could belong to "Patrick" or "Patricia." Our crew is savvy enough to handle these with the grace of seasoned pirates, ensuring no potential username walks the plank.\
